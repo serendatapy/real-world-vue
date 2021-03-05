@@ -1,28 +1,44 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+import EventList from "../views/EventList.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "event-list",
+    component: EventList,
   },
   {
-    path: "/about",
-    name: "About",
+    path: "/event/:id",
+    name: "event-show",
+    alias: "/event-here",
+    props: true,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
-  }
+      import(/* webpackChunkName: "about" */ "../views/EventShow.vue"),
+  },
+  {
+    path: "/event/create",
+    name: "event-create",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/EventCreate.vue"),
+  },
+  //necessary in history mode as server always serves index.html
+  // {
+  //   path: '*', component: NotFoundComponent
+  // }
 ];
 
 const router = new VueRouter({
-  routes
+  mode: "history", //necessary to get rid of # in path
+  routes,
 });
 
 export default router;
