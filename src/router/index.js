@@ -13,7 +13,7 @@ const routes = [
   {
     path: "/event/:id",
     name: "event-show",
-    alias: "/event-here",
+    alias: "/event-here", //example of redirect, not well done for SEO
     props: true,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
