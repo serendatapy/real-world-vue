@@ -67,17 +67,17 @@ export default {
       this.$store
         .dispatch('createEvent', this.event)
         .then(() => {
-          this.$router.push({
+          this.$router.push({ //route to new event after creation
             name: 'event-show',
             params: { id: this.event.id }
           })
-          this.event = this.createFreshEventObject()
+          this.event = this.createFreshEventObject() //commit to local store only if successful
         })
         .catch(() => {
           console.log('There was a problem creating your event')
         })
     },
-    createFreshEventObject() {
+    createFreshEventObject() { // used to clear out data after sending to store
       const user = this.$store.state.user
       const id = Math.floor(Math.random() * 10000000)
 
