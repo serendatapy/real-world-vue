@@ -2,16 +2,17 @@
   <div>
     <h1>Create an Event, {{ user.name }}</h1>
     <p>This event is created by {{ user.id }}</p>
-    <p>There are {{ catLength }} categories</p>
+    <p>Event ID: {{ getEventById(1) }}</p>
+    <p>There are {{ getCatCount }} categories</p>
     <p>In Categories:</p>
     <ul>
-      <li v-for="cat in categories" :key="cat">{{cat}}</li>
+      <li v-for="cat in categories" :key="cat">{{ cat }}</li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex"; // helpers to get list of state properties and getters
 export default {
   //Simple access to STORE, thought could be done directly in template too
   // computed: {
@@ -31,9 +32,7 @@ export default {
 
   //If we wanted to add extra computed properties we could use spread operator
   computed: {
-    catLength() {
-      return this.$store.getters.catLength;
-    },
+    ...mapGetters(["getEventById", "getCatCount"]),
     ...mapState(["categories", "user"]), //array of strings of state values we want
   },
 };
