@@ -1,12 +1,12 @@
 <template>
   <router-link
     class="event-link"
-    :to="{ name: 'event-show', params: { id: event.id.toString() } }"
+    :to="{ name: 'event-show', params: { id: event.id } }"
   >
     <div class="event-card -shadow">
       <span>@{{ event.time }} on {{ event.date }}</span>
       <h4>{{ event.title }}</h4>
-      <BaseIcon name="users"> {{ event.attendees.length }} attending </BaseIcon>
+      <BaseIcon name="users"> {{ event.attendees ? event.attendees.length : 0 }} attending </BaseIcon>
     </div>
   </router-link>
 </template>
@@ -14,12 +14,12 @@
 <script>
 export default {
   props: {
-    event: Object
+    event: Object,
   },
 };
 </script>
 
-    <style scoped>
+<style scoped>
 .event-card {
   padding: 20px;
   margin-bottom: 24px;
