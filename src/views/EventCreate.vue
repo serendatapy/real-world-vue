@@ -95,7 +95,7 @@ export default {
   methods: {
     createEvent() {
       this.$store
-        .dispatch("createEvent", this.event)
+        .dispatch("event/createEvent", this.event)
         .then(() => {
           this.$router.push({
             //route to new event after creation
@@ -110,7 +110,7 @@ export default {
     },
     createFreshEventObject() {
       // used to clear out data after sending to store
-      const user = this.$store.state.user;
+      const user = this.$store.state.user.user;
       const id = Math.floor(Math.random() * 10000000);
 
       return {
